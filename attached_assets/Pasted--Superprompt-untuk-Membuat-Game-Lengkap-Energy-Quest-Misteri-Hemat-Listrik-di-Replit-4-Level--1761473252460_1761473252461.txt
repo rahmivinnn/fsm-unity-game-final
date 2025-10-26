@@ -1,0 +1,45 @@
+### Superprompt untuk Membuat Game Lengkap "Energy Quest: Misteri Hemat Listrik" di Replit (4 Level, 3D, dengan Asset Asli)
+
+Berikut adalah **superprompt** lengkap yang bisa kamu copy-paste langsung ke AI seperti ChatGPT, Grok (tapi sejak "no AI ish", mungkin maksud no AI agent in-game), atau Replit's AI (jika ada). Prompt ini dirancang untuk generate kode full game web-based 3D menggunakan Three.js di Replit, berdasarkan desain lengkap dari dokumen PDF-mu. Asset harus asli seperti gambar ruang tamu yang kamu unggah (3D klasik, gelap, familiar), dan gunakan free GLTF models dari sumber seperti 3DExport atau Sketchfab (saya sertakan link dari search saya).
+
+Prompt ini fokus pada kode asli tanpa elemen AI (no AI agent atau "ish" seperti bantuan otomatis; pure puzzle manual). Game akan punya FSM untuk state transisi, Fisher-Yates shuffle untuk quiz, rumus energi untuk simulasi, drag/connect untuk kabel, sequence untuk TV, efficiency meter, dan quiz acak. Kontrol mobile (touch).
+
+**Cara Pakai Prompt Ini:**
+1. Buat Repl baru di Replit (HTML/CSS/JS template).
+2. Paste prompt ini ke AI, bilang "generate kode berdasarkan prompt ini".
+3. Copy hasil kode ke Replit (index.html, script.js, dll.).
+4. Upload asset GLTF free (link di bawah) ke folder "assets" di Replit.
+5. Run dan test.
+
+#### Superprompt (Copy Semua Ini):
+
+"Buatlah kode lengkap untuk game web-based 3D 'Energy Quest: Misteri Hemat Listrik' di Replit menggunakan Three.js. Game ini adalah puzzle adventure edukasi untuk siswa SMP (12-15 tahun), tujuan meningkatkan kesadaran efisiensi energi listrik melalui petualangan misteri. Platform web (Replit), target mobile-friendly dengan touch control. Gunakan asset 3D asli GLTF seperti ruang tamu klasik gelap (lantai kayu, sofa, lemari, jendela, dinding hitam, seperti gambar ruang tamu 3D dengan cahaya matahari), dan free models untuk battery, switch, lamp, old TV, kulkas, rice cooker, kipas, setrika, AC, blueprint, pintu besar, kunci energi (glowing yellow key). Download free GLTF dari: battery rack (https://netrinoimages.s3.eu-west-2.amazonaws.com/2019/08/11/633139/595945/array_battery_rack_system_energy_storage_pack_backup_power_bank_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_6164547_m.jpg), old TV (https://netrinoimages.s3.eu-west-2.amazonaws.com/2005/05/06/1656/87359/nikon_d4_photo_camera_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_1031731_m.jpg tapi ganti ke TV vintage), kitchen appliances dari Kenney.nl atau Sketchfab free, lab equipment dari 3DExport, basement door dari OpenGameArt. Jangan gunakan AI agent atau bantuan otomatis; puzzle manual murni.
+
+Game struktur:
+- Genre: Puzzle Adventure Edukasi.
+- Core Loop: Eksplorasi ruangan → Temukan puzzle → Selesaikan puzzle → Dapatkan Kunci Energi → Kumpulkan semua kunci → Masuk evaluasi akhir → Selesaikan game.
+- Setting: Rumah pintar klasik (Ruang Tamu, Dapur, Laboratorium Kecil, Ruang Bawah Tanah).
+- Narasi: Pemain sebagai siswa SMP menyelidiki rumah ilmuwan listrik yang hilang. Pecahkan puzzle untuk temukan ilmuwan.
+- Opening Scene: Animasi non-skipable dengan visual langit malam, berita TV tentang ilmuwan hilang, suara reporter, narasi teks, perkenalan pemain, judul game.
+- Main Menu: Mulai Permainan (Level 1 baru), Lanjutkan (load dari localStorage), Pengaturan (suara/musik), Tentang (info game).
+
+Level lengkap:
+1. Level 1 - Ruang Tamu (Dasar Listrik): Narasi masuk rumah gelap. Puzzle Kabel: Drag & Connect kabel 3D ke komponen (+baterai → saklar → lampu → -baterai); snap to connectors, feedback salah (kabel merah, 'Rangkaian terbuka'), benar (lampu nyala, suara klik, pesan edukatif 'Listrik mengalir tertutup'). Puzzle TV Tua: Sequence touch/click (colok kabel → saklar utama → power → atur channel); feedback salah ('Pastikan aliran'), benar (rekaman suara ilmuwan). Reward: 2 Kunci Energi, pintu dapur terbuka.
+2. Level 2 - Dapur (Efisiensi Energi): Narasi 'Gunakan bijak agar energi tidak boros'. Interaksi: Matikan lampu/buka jendela (cahaya alami), tutup kulkas cepat (timer), mode hemat rice cooker, gunakan kipas/setrika seperlunya. Power Meter (bar hijau/merah); boros → buzz/merah, efisien → ding/hijau. Reward: Kunci Energi Kedua, clue radio.
+3. Level 3 - Laboratorium Kecil (Tagihan Listrik): Narasi 'Atur pemakaian agar tagihan ≤ Rp300.000'. Simulator: Toggle ON/OFF perangkat (lampu, AC, TV, kulkas), hitung energi dengan rumus Energi(kWh) = (P * t) / 1000 (P=Watt, t=jam), tampilkan estimasi tagihan. Feedback: Boros → ruang redup/HUD merah, Efisien → terang/hijau. Reward: Kunci Energi Ketiga, blueprint, cutscene pintu bawah tanah.
+4. Level 4 - Ruang Bawah Tanah (Evaluasi Final): Gunakan 3 kunci buka pintu. Puzzle: Quiz acak 10/20 soal listrik (gunakan Fisher-Yates shuffle untuk acak array soal). Feedback: Salah → lampu padam/soal ulang, Benar → nyala/pintu terbuka. Cutscene final: Ilmuwan muncul, pesan 'Gunakan energi bijak'. Ending: Visual rumah efisien, narasi kesadaran energi.
+
+Teknis:
+- Gunakan Three.js untuk 3D, load GLTF assets, raycasting untuk interaksi touch/mouse (drag kabel, click sequence).
+- FSM (Finite State Machine) untuk state: OpeningScene → MainMenu → Level1 → Level2 → Level3 → Level4 → EndingScene. Gunakan class atau switch untuk transisi.
+- Fisher-Yates shuffle: Implementasikan function JS untuk acak quiz array di Level 4.
+- Energy calculation: Rumus JS di Level 3, update UI tagihan real-time.
+- Kontrol: Touch/mouse drag (raycast position), orbit camera untuk eksplorasi.
+- Feedback: Overlay teks DOM untuk pesan edukatif, warna hijau/merah.
+- Save: localStorage untuk kunci/level.
+- Suara: Tambah Audio() untuk klik/buzz (upload MP3 free).
+- No AI: Semua manual, no hint otomatis.
+
+Generate file lengkap: index.html (dengan Three.js CDN dan GLTFLoader), style.css (untuk UI overlay), script.js (semua logic, load assets, FSM, puzzles). Buat game playable di browser/mobile, dengan asset asli 3D seperti ruang tamu klasik gelap." 
+
+Ini prompt super lengkap, capekmu terbayar dengan satu paste. Jika AI generate kode, test di Replit. Kalau butuh tweak, bilang ya! Istirahat dulu, kamu capek. 😊
