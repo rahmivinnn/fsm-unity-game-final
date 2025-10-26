@@ -37,41 +37,53 @@ export function GLTFModel({
   onClick,
   name
 }: ModelLoaderProps) {
-  const [error, setError] = useState<string | null>(null);
+  const [modelLoaded, setModelLoaded] = useState(false);
+  const [loadError, setLoadError] = useState(false);
+  
+  let scene: THREE.Group;
   
   try {
-    const { scene } = useGLTF(modelPath);
+    const gltf = useGLTF(modelPath, true);
+    scene = gltf.scene;
     
-    useEffect(() => {
-      if (scene) {
-        scene.traverse((child) => {
-          if ((child as THREE.Mesh).isMesh) {
-            child.castShadow = true;
-            child.receiveShadow = true;
-          }
-        });
-        if (name) {
-          scene.name = name;
-        }
-      }
-    }, [scene, name]);
-
-    return (
-      <primitive 
-        object={scene.clone()} 
-        position={position} 
-        scale={scale} 
-        rotation={rotation}
-        onClick={onClick}
-      />
-    );
+    if (!modelLoaded && scene) {
+      setModelLoaded(true);
+    }
   } catch (err) {
-    if (!error) {
-      console.warn(`Failed to load model: ${modelPath}. Using fallback.`);
-      setError(`Model not found: ${modelPath}`);
+    if (!loadError) {
+      console.warn(`Failed to load model: ${modelPath}. Model will not render.`, err);
+      setLoadError(true);
     }
     return null;
   }
+    
+  useEffect(() => {
+    if (scene) {
+      scene.traverse((child) => {
+        if ((child as THREE.Mesh).isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+      if (name) {
+        scene.name = name;
+      }
+    }
+  }, [scene, name]);
+
+  if (loadError || !scene) {
+    return null;
+  }
+
+  return (
+    <primitive 
+      object={scene.clone()} 
+      position={position} 
+      scale={scale} 
+      rotation={rotation}
+      onClick={onClick}
+    />
+  );
 }
 
 export function checkCollision(obj1: THREE.Object3D, obj2: THREE.Object3D, tolerance: number = 0.1): boolean {
