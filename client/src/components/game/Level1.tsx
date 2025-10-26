@@ -1,10 +1,14 @@
 import { Canvas, useThree } from "@react-three/fiber";
-import { OrbitControls, Box, useTexture } from "@react-three/drei";
+import { Box, useTexture } from "@react-three/drei";
 import { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { useEnergyQuest, GameState } from "@/lib/stores/useEnergyQuest";
 import { GameUI } from "./GameUI";
 import { useAudio } from "@/lib/stores/useAudio";
+import { GLTFModel } from "./GLTFModel";
+import { BoundingBoxHelper } from "@/lib/utils/boundingBox";
+import { StudentCharacter } from "./StudentCharacter";
+import { FocusOrbitControls } from "./FocusOrbitControls";
 
 function EnergyKey({ position, onCollect }: { position: [number, number, number], onCollect?: () => void }) {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -117,100 +121,76 @@ function Sofa({ position }: { position: [number, number, number] }) {
 }
 
 function TVStand({ position, onClick, tvOn }: { position: [number, number, number], onClick: () => void, tvOn: boolean }) {
-  const texture = useTexture("/textures/wood.jpg");
-  
+  // Using a realistic vintage Japanese CRT TV model
   return (
-    <group position={position}>
-      <Box args={[2.5, 0.8, 0.8]} castShadow receiveShadow>
-        <meshStandardMaterial map={texture} />
-      </Box>
-      <Box args={[0.2, 0.8, 0.6]} position={[-1, 0, 0]} castShadow receiveShadow>
-        <meshStandardMaterial map={texture} />
-      </Box>
-      <Box args={[0.2, 0.8, 0.6]} position={[1, 0, 0]} castShadow receiveShadow>
-        <meshStandardMaterial map={texture} />
-      </Box>
-      
-      <group position={[0, 1.2, 0]} onClick={onClick}>
-        <Box args={[2, 1.2, 0.15]} castShadow receiveShadow>
-          <meshStandardMaterial 
-            color={tvOn ? "#1a3a5a" : "#0a0a0a"} 
-            emissive={tvOn ? "#2563eb" : "#000000"}
-            emissiveIntensity={tvOn ? 0.5 : 0}
-          />
-        </Box>
-        <Box args={[2.2, 1.4, 0.05]} position={[0, 0, -0.1]} castShadow>
-          <meshStandardMaterial color="#1a1a1a" />
-        </Box>
-      </group>
+    <group position={position} onClick={onClick}>
+      <GLTFModel 
+        path="/models/vintage-japanese-tv.glb" 
+        scale={[0.7, 0.7, 0.7]}
+        castShadow
+        receiveShadow
+      />
+      {tvOn && (
+        <group position={[0, 1.2, 0.1]}>
+          <pointLight intensity={1} distance={5} color="#2563eb" castShadow />
+        </group>
+      )}
     </group>
   );
 }
 
 function Battery({ position }: { position: [number, number, number] }) {
+  // Using a realistic battery rack model instead of primitive shapes
   return (
-    <group position={position}>
-      <Box args={[0.6, 1, 0.4]} castShadow receiveShadow>
-        <meshStandardMaterial color="#1a1a1a" />
-      </Box>
-      <Box position={[0, 0.6, 0.15]} args={[0.5, 0.3, 0.1]} castShadow>
-        <meshStandardMaterial color="#dc2626" />
-      </Box>
-      <Box position={[0, -0.6, 0.15]} args={[0.5, 0.3, 0.1]} castShadow>
-        <meshStandardMaterial color="#3b82f6" />
-      </Box>
-      <mesh position={[0, 0.55, 0.25]}>
-        <boxGeometry args={[0.15, 0.1, 0.05]} />
-        <meshStandardMaterial color="#dc2626" />
-      </mesh>
-      <mesh position={[0, -0.55, 0.25]}>
-        <boxGeometry args={[0.15, 0.1, 0.05]} />
-        <meshStandardMaterial color="#3b82f6" />
-      </mesh>
-    </group>
+    <GLTFModel 
+      path="/models/battery-rack-metal.glb" 
+      position={position} 
+      scale={[0.5, 0.5, 0.5]}
+      castShadow
+      receiveShadow
+    />
   );
 }
 
 function Switch({ position, onClick, connected }: { position: [number, number, number], onClick: () => void, connected: boolean }) {
+  // Using a realistic vintage light switch model
   return (
-    <group position={position} onClick={onClick}>
-      <Box args={[0.5, 0.6, 0.2]} castShadow receiveShadow>
-        <meshStandardMaterial color="#f3f4f6" />
-      </Box>
-      <Box position={[0, connected ? 0.1 : -0.1, 0.15]} args={[0.3, 0.2, 0.1]} castShadow>
-        <meshStandardMaterial color={connected ? "#22c55e" : "#ef4444"} />
-      </Box>
-    </group>
+    <GLTFModel 
+      path="/models/light-switch-vintage.glb" 
+      position={position} 
+      scale={[0.3, 0.3, 0.3]}
+      onClick={onClick}
+      castShadow
+      receiveShadow
+    />
   );
 }
 
 function Lamp({ position, isOn }: { position: [number, number, number], isOn: boolean }) {
+  // Using a realistic lamp bulb model
   return (
     <group position={position}>
-      <mesh>
-        <sphereGeometry args={[0.4, 32, 32]} />
-        <meshStandardMaterial 
-          color="white" 
-          emissive={isOn ? "yellow" : "black"} 
-          emissiveIntensity={isOn ? 1 : 0}
-        />
-      </mesh>
+      <GLTFModel 
+        path="/models/lamp-bulb-glass.glb" 
+        scale={[0.4, 0.4, 0.4]}
+        castShadow
+        receiveShadow
+      />
       {isOn && <pointLight position={[0, 0, 0]} intensity={2} distance={8} color="yellow" castShadow />}
     </group>
   );
 }
 
 function CeilingLamp({ position }: { position: [number, number, number] }) {
+  // Using a realistic ceiling lamp model
   return (
-    <group position={position}>
-      <Box args={[0.8, 0.2, 0.8]} castShadow>
-        <meshStandardMaterial color="#3a3a3a" />
-      </Box>
-      <mesh position={[0, -0.3, 0]}>
-        <cylinderGeometry args={[0.3, 0.4, 0.4, 32]} />
-        <meshStandardMaterial color="#f5f5f5" />
-      </mesh>
-    </group>
+    <GLTFModel 
+      path="/models/ceiling-lamp-modern.glb" 
+      position={position} 
+      scale={[0.6, 0.6, 0.6]}
+      castShadow
+      receiveShadow
+    />
   );
 }
 
@@ -303,20 +283,32 @@ function Level1Scene({ onMessage }: { onMessage: (msg: string, type: "info" | "s
       
       <Sofa position={[5, 0.4, -6]} />
       
-      <TVStand position={[5, 0.4, 0]} onClick={handleTVClick} tvOn={tvStep >= 4} />
+      <TVStand 
+        position={[5, 0.4, 0]} 
+        onClick={handleTVClick} 
+        tvOn={tvStep >= 4} 
+      />
 
       <CeilingLamp position={[0, 5, -3]} />
 
       <Battery position={[-2, 0.5, 2]} />
       
-      <Switch position={[0, 0.5, 2]} onClick={handleCableClick} connected={cableConnected} />
+      <Switch 
+        position={[0, 0.5, 2]} 
+        onClick={handleCableClick} 
+        connected={cableConnected} 
+      />
       
       <Lamp position={[2, 0.5, 2]} isOn={cableConnected} />
 
       {showKey1 && <EnergyKey position={[2, 2, 2]} />}
       {showKey2 && <EnergyKey position={[5, 2.5, 0]} />}
 
-      <OrbitControls 
+      <StudentCharacter 
+        position={[-5, 0, 0]} 
+      />
+
+      <FocusOrbitControls 
         enablePan={false} 
         minDistance={8} 
         maxDistance={20}
@@ -330,7 +322,24 @@ function Level1Scene({ onMessage }: { onMessage: (msg: string, type: "info" | "s
 export function Level1() {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState<"info" | "success" | "error">("info");
-  const { keysCollected } = useEnergyQuest();
+  const { keysCollected, level1CableSolved, level1TVSolved } = useEnergyQuest();
+  const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
+
+  const levelTasks = [
+    "Klik saklar untuk hubungkan rangkaian",
+    "Klik TV 4x untuk menyalakannya",
+    "Kumpulkan 2 kunci energi"
+  ];
+
+  useEffect(() => {
+    if (level1CableSolved && level1TVSolved && keysCollected >= 2) {
+      setCurrentTaskIndex(3); // All tasks completed
+    } else if (level1CableSolved && level1TVSolved) {
+      setCurrentTaskIndex(2); // First two tasks completed
+    } else if (level1CableSolved) {
+      setCurrentTaskIndex(1); // First task completed
+    }
+  }, [level1CableSolved, level1TVSolved, keysCollected]);
 
   return (
     <div className="fixed inset-0 bg-black">
@@ -345,16 +354,9 @@ export function Level1() {
         message={message}
         messageType={messageType}
         keysCollected={keysCollected}
+        tasks={levelTasks}
+        currentTaskIndex={currentTaskIndex}
       />
-      
-      <div className="fixed bottom-4 right-4 bg-gray-800/90 p-4 rounded-lg text-white text-sm max-w-xs">
-        <h3 className="font-bold mb-2">Level 1: Ruang Tamu</h3>
-        <p className="text-xs text-gray-300">
-          • Klik saklar untuk hubungkan rangkaian<br/>
-          • Klik TV 4x untuk menyalakannya<br/>
-          • Kumpulkan 2 kunci energi
-        </p>
-      </div>
     </div>
   );
 }
