@@ -1,0 +1,11 @@
+Model Information:
+* title:	Toon Key
+* source:	https://sketchfab.com/3d-models/toon-key-1eb522a3c3674d2682a942a1775100e9
+* author:	TerDudeModels (https://sketchfab.com/TerDudeModels)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Toon Key" (https://sketchfab.com/3d-models/toon-key-1eb522a3c3674d2682a942a1775100e9) by TerDudeModels (https://sketchfab.com/TerDudeModels) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

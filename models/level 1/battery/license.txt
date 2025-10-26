@@ -1,0 +1,11 @@
+Model Information:
+* title:	Battery
+* source:	https://sketchfab.com/3d-models/battery-cccf3dcca7be4365b22ff59433024586
+* author:	SCP-173 (https://sketchfab.com/username_Unknown)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Battery" (https://sketchfab.com/3d-models/battery-cccf3dcca7be4365b22ff59433024586) by SCP-173 (https://sketchfab.com/username_Unknown) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

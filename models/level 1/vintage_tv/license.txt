@@ -1,0 +1,11 @@
+Model Information:
+* title:	Vintage TV
+* source:	https://sketchfab.com/3d-models/vintage-tv-54b56ce71d054d60ab31425757a45cf7
+* author:	Outlier Spa (https://sketchfab.com/outlier_spa)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Vintage TV" (https://sketchfab.com/3d-models/vintage-tv-54b56ce71d054d60ab31425757a45cf7) by Outlier Spa (https://sketchfab.com/outlier_spa) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

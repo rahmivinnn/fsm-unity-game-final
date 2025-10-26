@@ -1,0 +1,11 @@
+Model Information:
+* title:	Toriel's Kitchen (Deltarune)
+* source:	https://sketchfab.com/3d-models/toriels-kitchen-deltarune-9ae6eb86a386471fab613e8b6ed7ab4d
+* author:	MaxDeaconVR (https://sketchfab.com/MaxDeaconVR)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Toriel's Kitchen (Deltarune)" (https://sketchfab.com/3d-models/toriels-kitchen-deltarune-9ae6eb86a386471fab613e8b6ed7ab4d) by MaxDeaconVR (https://sketchfab.com/MaxDeaconVR) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

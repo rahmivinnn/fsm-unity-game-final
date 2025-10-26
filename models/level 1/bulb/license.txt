@@ -1,0 +1,8 @@
+Model Information:
+* title:	lamp
+* source:	https://sketchfab.com/3d-models/lamp-77739989860a4158b02998985e06a6f0
+* author:	Sousinho (https://sketchfab.com/sousinho)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

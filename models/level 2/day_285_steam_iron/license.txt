@@ -1,0 +1,11 @@
+Model Information:
+* title:	Day 285: Steam Iron
+* source:	https://sketchfab.com/3d-models/day-285-steam-iron-17a183e64c1a43bdab6827b5a6651e0d
+* author:	uttamg911 (https://sketchfab.com/uttamg911)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Day 285: Steam Iron" (https://sketchfab.com/3d-models/day-285-steam-iron-17a183e64c1a43bdab6827b5a6651e0d) by uttamg911 (https://sketchfab.com/uttamg911) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

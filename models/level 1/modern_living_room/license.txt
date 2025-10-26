@@ -1,0 +1,11 @@
+Model Information:
+* title:	Modern Living Room
+* source:	https://sketchfab.com/3d-models/modern-living-room-ec7179648b1e43739104994d64e95673
+* author:	Visthétique (https://sketchfab.com/visthetique)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Modern Living Room" (https://sketchfab.com/3d-models/modern-living-room-ec7179648b1e43739104994d64e95673) by Visthétique (https://sketchfab.com/visthetique) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
